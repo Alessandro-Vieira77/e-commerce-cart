@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
+import { CartContext } from "../../context/CartContext";
 
 export function Header() {
   const { cartAmount } = useContext(CartContext);
