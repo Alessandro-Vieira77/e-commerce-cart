@@ -60,7 +60,9 @@ export function Cart() {
       ))}
 
       {cart.length !== 0 && (
-        <p className="font-bold mt-2 text-xs md:text-base">Total: {total}</p>
+        <p className="font-bold mt-2 text-xs md:text-base mb-10">
+          Total: {total}
+        </p>
       )}
     </div>
   );
