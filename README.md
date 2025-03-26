@@ -1,54 +1,58 @@
-# React + TypeScript + Vite
+# 🛒 Projeto - Carrinho de Compras
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é um sistema simples de carrinho de compras desenvolvido com React e TypeScript. Ele permite que os usuários visualizem produtos, vejam detalhes de um produto específico e adicionem produtos ao carrinho.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** - Biblioteca para construção da interface do usuário
+- **TypeScript** - Superset do JavaScript que adiciona tipagem estática
+- **JavaScript** - Linguagem principal utilizada no desenvolvimento
+- **React Router DOM** - Gerenciamento de rotas da aplicação
+- **React Icons** - Conjunto de ícones para a interface
+- **TailwindCSS** - Framework para estilização
+- **React Hot Toast** - Biblioteca para exibição de notificações
+- **JSON Server** - Simulação de uma API RESTful para os produtos
+- **Axios** - Cliente HTTP para consumo de APIs
 
-## Expanding the ESLint configuration
+## 📌 Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Exibição de uma lista de produtos na página inicial
+- Visualização detalhada de um produto
+- Adição e remoção de produtos no carrinho
+- Exibição dos produtos selecionados na página do carrinho
+- Feedback visual através de notificações
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## ▶️ Como Executar o Projeto
+
+### 1️⃣ Clonar o repositório:
+
+```bash
+ git https://github.com/Alessandro-Vieira77/e-commerce-cart.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2️⃣ Instalar as dependências:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+ cd e-commerce-car
+ npm install
 ```
+
+### 3️⃣ Iniciar o JSON Server:
+
+```bash
+ npx json-server --watch db.json
+```
+
+### 4️⃣ Rodar o projeto:
+
+```bash
+ npm run dev
+```
+
+A aplicação estará disponível em [**http://localhost:5173**](http://localhost:5173) (ou outra porta definida pelo Vite).
+
+---
+
+### 💡 Contribuição
+
+Fique à vontade para contribuir enviando PRs e sugestões! 😊
