@@ -53,6 +53,10 @@ A aplicação estará disponível em [**http://localhost:5173**](http://localhos
 
 ---
 
+### 4️⃣ projeto online:
+
+- https://e-commerce-cart-alessandro-vieiras-projects.vercel.app/
+
 ### 💡 Contribuição
 
 Fique à vontade para contribuir enviando PRs e sugestões! 😊
