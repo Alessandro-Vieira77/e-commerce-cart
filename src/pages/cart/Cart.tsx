@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export function Cart() {
   const { cart, total, addIntemCat, removeItemCart } = useContext(CartContext);
   return (
-    <div className="w-full max-w-7xl mx-auto">
+    <div className="w-full max-w-7xl mx-auto px-5">
       <h1 className="font-medium text-2xl text-center my-4">Meu carrinho</h1>
 
       {cart.length === 0 && (
@@ -25,18 +25,22 @@ export function Cart() {
           key={item.id}
           className="flex items-center justify-between border-b-2 border-gray-300"
         >
-          <img src={item.cover} alt={item.description} className="w-28" />
+          <img
+            src={item.cover}
+            alt={item.description}
+            className="max-h-20 md:max-h-28 object-contain"
+          />
 
-          <strong>{item.price}</strong>
+          <strong className="text-xs md:text-base">{item.price}</strong>
 
           <div className="flex items-center justify-center gap-3">
             <button
               onClick={() => removeItemCart(item)}
-              className="bg-slate-600 px-2 rounded text-white font-medium flex items-center justify-center cursor-pointer"
+              className="bg-slate-600 px-2 rounded text-white  font-medium flex items-center justify-center cursor-pointer"
             >
               -
             </button>
-            {item.amount}
+            <p className="text-xs md:text-base">{item.amount}</p>
             <button
               onClick={() => addIntemCat(item)}
               className="bg-slate-600 px-2 rounded text-white font-medium flex items-center justify-center cursor-pointer"
@@ -45,7 +49,7 @@ export function Cart() {
             </button>
           </div>
 
-          <strong className="float-right">
+          <strong className="float-right text-xs md:text-base">
             SubTotal:
             {item.total.toLocaleString("pt-BR", {
               style: "currency",
@@ -55,7 +59,9 @@ export function Cart() {
         </section>
       ))}
 
-      {cart.length !== 0 && <p className="font-bold mt-2">Total: {total}</p>}
+      {cart.length !== 0 && (
+        <p className="font-bold mt-2 text-xs md:text-base">Total: {total}</p>
+      )}
     </div>
   );
 }

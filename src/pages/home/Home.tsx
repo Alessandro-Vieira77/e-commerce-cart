@@ -3,6 +3,7 @@ import { api } from "../../service/api";
 import { BsCartPlus } from "react-icons/bs";
 import { CartContext } from "../../context/CartContext";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export interface ProdutosProps {
   id: number;
@@ -15,39 +16,54 @@ export interface ProdutosProps {
 export function Home() {
   const [products, setProducts] = useState<ProdutosProps[]>([]);
   const { addIntemCat } = useContext(CartContext);
+  const navegate = useNavigate();
+
   useEffect(() => {
     async function getProducts() {
       const response = await api.get("/products");
       const data = await response.data;
       setProducts(data);
     }
+
     getProducts();
-  });
+  }, []);
 
   function handleCatItem(product: ProdutosProps) {
     toast.success("Produto adicionado ao carrinho");
     addIntemCat(product);
   }
 
+  function productPage(id: number) {
+    navegate(`/cart/${id}`);
+  }
+
   return (
     <div>
-      <main className="w-full max-w-7xl px-4 mx-auto">
+      <main className="w-full max-w-7xl px-4 mx-auto mb-10">
         <h1 className="font-bold text-2xl mb-4 mt-10 text-center">
           Produtos em alta
         </h1>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-5">
           {products.map((product) => (
-            <section key={product.id} className="w-full">
+            <section
+              key={product.id}
+              className="w-full flex flex-col justify-center items-center"
+            >
               <img
-                className="w-full rounded-lg max-h-70 mb-2"
+                className="w-full max-h-28 md:max-h-40 object-contain rounded-lg mb-2 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
                 src={product.cover}
                 alt={product.title}
               />
-              <p className="font-medium mt-1 mb-2">{product.title}</p>
+              <p
+                onClick={() => productPage(product.id)}
+                className="font-medium text-center text-sm md:text-base mt-1 mb-2 hover:underline cursor-pointer"
+              >
+                {product.title}
+              </p>
 
               <div className="flex gap-3 items-center">
-                <strong className="text-zinc-700/90">
+                <strong className="text-zinc-700/90 text-sm md:text-base">
                   {product.price.toLocaleString("pt-BR", {
                     style: "currency",
                     currency: "BRL",
