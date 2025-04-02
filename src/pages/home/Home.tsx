@@ -1,9 +1,10 @@
 import { useEffect, useState, useContext } from "react";
-import { api } from "../../service/api";
 import { BsCartPlus } from "react-icons/bs";
 import { CartContext } from "../../context/CartContext";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { collection, orderBy, query, onSnapshot } from "firebase/firestore";
+import { db } from "../../service/db";
 
 export interface ProdutosProps {
   id: number;
@@ -19,13 +20,27 @@ export function Home() {
   const navegate = useNavigate();
 
   useEffect(() => {
-    async function getProducts() {
-      const response = await api.get("/products");
-      const data = await response.data;
-      setProducts(data);
-    }
+    async function productsDb() {
+      const cartProducts = collection(db, "products");
+      const queryRef = query(cartProducts, orderBy("id", "asc"));
+      const onSub = onSnapshot(queryRef, (snapshot) => {
+        let cartArray = [] as ProdutosProps[];
 
-    getProducts();
+        snapshot.forEach((item) => {
+          cartArray.push({
+            id: item.data().id,
+            title: item.data().title,
+            description: item.data().description,
+            price: item.data().price,
+            cover: item.data().cover,
+          });
+        });
+
+        setProducts(cartArray);
+        onSub;
+      });
+    }
+    productsDb();
   }, []);
 
   function handleCatItem(product: ProdutosProps) {
